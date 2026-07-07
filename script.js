@@ -205,7 +205,7 @@ function initBackToTop() {
   window.addEventListener('scroll', toggleVisibility, { passive: true });
 
   btn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'auto' });
   });
 }
 
@@ -241,4 +241,35 @@ function initContactForm() {
       form.reset();
     }, 1100);
   });
+}
+
+/* ------------------------------------------------------------
+   Active nav link highlighting on scroll (scroll-spy)
+   ------------------------------------------------------------ */
+function initActiveNavLink() {
+  const navLinks = document.querySelectorAll('[data-nav-link]');
+  const sections = document.querySelectorAll('section[id], main[id]');
+  if (!navLinks.length || !sections.length) return;
+
+  const setActiveLink = (id) => {
+    navLinks.forEach((link) => {
+      const isMatch = link.getAttribute('href') === `#${id}`;
+      link.classList.toggle('is-active', isMatch);
+    });
+  };
+
+  if (!('IntersectionObserver' in window)) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveLink(entry.target.id);
+        }
+      });
+    },
+    { rootMargin: '-40% 0px -55% 0px', threshold: 0 }
+  );
+
+  sections.forEach((section) => observer.observe(section));
 }
