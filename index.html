@@ -1,232 +1,399 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATHNEX — Digital Engineering & Design Studio</title>
+<meta name="description" content="ATHNEX is a premium web engineering studio building high-performance digital products for ambitious brands.">
 
-    <title>ATHNEX | Premium Web Agency</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-
-    <!-- Remix Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 </head>
+<body data-theme="dark">
 
-<body>
+<!-- Aurora background layer -->
+<div class="aurora-bg" aria-hidden="true">
+  <span class="aurora-blob blob-1"></span>
+  <span class="aurora-blob blob-2"></span>
+  <span class="aurora-blob blob-3"></span>
+  <div class="grain"></div>
+</div>
 
-<header>
+<!--NAVBAR-->
+<header class="navbar" id="navbar">
+  <div class="container navbar__inner">
+    <a href="#top" class="brand">
+      <span class="brand__mark">AX</span>
+      <span class="brand__name">ATHNEX</span>
+    </a>
 
-    <div class="container navbar">
+    <nav class="nav-links" id="navLinks">
+      <a href="#top" class="nav-link" data-nav-link>Home</a>
+      <a href="#services" class="nav-link">Services</a>
+      <a href="#work" class="nav-link">Work</a>
+      <a href="#testimonials" class="nav-link">Clients</a>
+      <a href="#faq" class="nav-link">FAQ</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
 
-        <a href="#" class="logo">
-            ATHNEX
-        </a>
-
-        <ul class="nav-links">
-
-            <li><a href="#">Home</a></li>
-
-            <li><a href="#">Services</a></li>
-
-            <li><a href="#">Portfolio</a></li>
-
-            <li><a href="#">Contact</a></li>
-
-        </ul>
-
-        <div class="nav-right">
-
-            <button class="theme-btn">
-
-                <i class="ri-moon-line"></i>
-
-            </button>
-
-            <a href="#" class="btn">
-
-                Get Started
-
-            </a>
-
-        </div>
-
+    <div class="navbar__actions">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme">
+        <span class="theme-toggle__track">
+          <span class="theme-toggle__thumb"></span>
+        </span>
+      </button>
+      <a href="#contact" class="btn btn--primary btn--small">Start a Project</a>
+      <button class="hamburger" id="hamburger" type="button" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-
+  </div>
 </header>
 
-<!-- ================= HERO ================= -->
-
-<section class="hero">
-
-<div class="container hero-container">
-
-<div class="hero-content">
-
-<span class="tag">
-
-PREMIUM DIGITAL AGENCY
-
-</span><br><br>
-
-
-<h1>
-
-Building Digital
-
-<span>Experiences</span>
-
-That Inspire.
-
-</h1>
-
-<p>
-
-We design and develop modern websites
-that help startups and businesses
-grow faster online.
-
-</p>
-
-<div class="hero-buttons">
-
-<a href="#" class="btn">
-
-Start Project
-
-</a>
-
-<a href="#" class="btn-outline">
-
-View Work
-
-</a>
-
-</div>
-
-<div class="hero-stats">
-
-<div>
-
-<h2>50+</h2>
-
-<p>Projects</p>
-
-</div>
-
-<div>
-
-<h2>100%</h2>
-
-<p>Satisfaction</p>
-
-</div>
-
-<div>
-
-<h2>24/7</h2>
-
-<p>Support</p>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- Dashboard -->
-
-<div class="hero-dashboard">
-
-<div class="dashboard">
-
-<div class="dashboard-top">
-
-<span class="dot red"></span>
-
-<span class="dot yellow"></span>
-
-<span class="dot green"></span>
-
-</div>
-
-<div class="dashboard-body">
-
-<div class="card large">
-
-<h4>Revenue</h4>
-
-<div class="bar"></div>
-
-<div class="bar small"></div>
-
-</div>
-
-<div class="mini-cards">
-
-<div class="card">
-
-<h5>Users</h5>
-
-<div class="circle"></div>
-
-</div>
-
-<div class="card">
-
-<h5>Growth</h5>
-
-<div class="graph"></div>
-
-</div>
-
-</div>
-
-<div class="card analytics">
-
-<h4>Analytics</h4>
-
-<div class="chart">
-
-<span></span>
-
-<span></span>
-
-<span></span>
-
-<span></span>
-
-<span></span>
-
-<span></span>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- Floating Blur -->
-
-<div class="blur blur-one"></div>
-
-<div class="blur blur-two"></div>
-
-</section>
-
-<script src="script.js"></script>
-
+<main id="top">
+
+  <!--HERO-->
+  <section class="hero" id="hero">
+    <div class="container hero__inner">
+      <div class="hero__content reveal">
+        <p class="eyebrow"><span class="eyebrow__dot"></span>Engineering &amp; Design Studio</p>
+        <h1 class="hero__title">
+          We build digital products
+          <span class="text-gradient">that feel inevitable.</span>
+        </h1>
+        <p class="hero__subtitle">
+          ATHNEX partners with founders and enterprise teams to design, engineer, and ship
+          web experiences that convert curiosity into revenue — from first pixel to production deploy.
+        </p>
+        <div class="hero__cta">
+          <a href="#contact" class="btn btn--primary">Book a Discovery Call</a>
+          <a href="#work" class="btn btn--ghost">
+            <span>View Our Work</span>
+            <span class="btn__arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+
+        <div class="hero__stats">
+          <div class="stat">
+            <span class="stat__value" data-count="120">0</span>
+            <span class="stat__label">Products Shipped</span>
+          </div>
+          <div class="stat">
+            <span class="stat__value" data-count="98" data-suffix="%">0</span>
+            <span class="stat__label">Client Retention</span>
+          </div>
+          <div class="stat">
+            <span class="stat__value" data-count="14" data-suffix="d">0</span>
+            <span class="stat__label">Avg. Sprint Cycle</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__panel reveal" style="--reveal-delay:0.15s">
+
+        <!-- Signature element: floating glass console -->
+
+        <div class="console">
+          <div class="console__glow" aria-hidden="true"></div>
+          <div class="console__header">
+            <div class="console__dots">
+              <span></span><span></span>
+            </div>
+            <span class="console__title">athnex — live status</span>
+          </div>
+
+          <div class="console__body">
+            <div class="console__ring-wrap">
+              <div class="console__ring" style="--val:82">
+                <div class="console__ring-inner">
+                  <span class="console__ring-value">82</span>
+                  <span class="console__ring-unit">score</span>
+                </div>
+              </div>
+              <div class="console__ring-meta">
+                <span class="console__ring-title">Performance</span>
+                <span class="console__ring-sub">Lighthouse · Production</span>
+              </div>
+            </div>
+
+            <ul class="console__metrics">
+              <li>
+                <span class="metric__label">Uptime</span>
+                <span class="metric__bar"><i style="--w:99%"></i></span>
+                <span class="metric__value">99.98%</span>
+              </li>
+              <li>
+                <span class="metric__label">Build Health</span>
+                <span class="metric__bar"><i style="--w:94%"></i></span>
+                <span class="metric__value">94%</span>
+              </li>
+              <li>
+                <span class="metric__label">Core Web Vitals</span>
+                <span class="metric__bar"><i style="--w:88%"></i></span>
+                <span class="metric__value">88%</span>
+              </li>
+            </ul>
+
+            <div class="console__log" aria-hidden="true">
+              <p><span class="log__tag">deploy</span> main → production</p>
+              <p><span class="log__tag log__tag--ok">ok</span> build completed in 41s</p>
+              <p><span class="log__tag">status</span> all systems operational</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="floating-chip chip-1">⚡ Fast by default</div>
+        <div class="floating-chip chip-2">🔒 SOC2-ready infra</div>
+      </div>
+    </div>
+  </section>
+
+  <!--DASHBOARD SHOWCASE-->
+  <section class="dashboard-section" id="dashboard">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow"><span class="eyebrow__dot"></span>Inside the studio</p>
+        <h2 class="section-title">One dashboard. Every stage of the build.</h2>
+        <p class="section-desc">
+          Every ATHNEX engagement runs through the same operating layer — so you always know
+          what shipped, what's next, and what it's costing you.
+        </p>
+      </div>
+
+      <div class="dash reveal">
+        <aside class="dash__sidebar">
+          <div class="dash__brand">
+            <span class="dash__brand-mark">AX</span>
+            <span>Control Room</span>
+          </div>
+          <nav class="dash__nav">
+            <a class="dash__nav-item is-active"><i class="dot"></i>Overview</a>
+            <a class="dash__nav-item"><i class="dot"></i>Projects</a>
+            <a class="dash__nav-item"><i class="dot"></i>Analytics</a>
+            <a class="dash__nav-item"><i class="dot"></i>Releases</a>
+            <a class="dash__nav-item"><i class="dot"></i>Billing</a>
+          </nav>
+          <div class="dash__user">
+            <span class="dash__avatar">AW</span>
+            <div>
+              <p class="dash__user-name">Atharv Wagh</p>
+              <p class="dash__user-role">Product Lead</p>
+            </div>
+          </div>
+        </aside>
+
+        <div class="dash__main">
+          <div class="dash__topbar">
+            <div>
+              <h3>Q3 Growth Sprint</h3>
+              <p>Milestone 3 of 5 · on track</p>
+            </div>
+            <span class="badge badge--live">● Live</span>
+          </div>
+
+          <div class="dash__cards">
+            <div class="dash__card">
+              <p class="dash__card-label">Conversion Rate</p>
+              <p class="dash__card-value">6.42<span>%</span></p>
+              <p class="dash__card-trend is-up">↑ 1.8% vs last sprint</p>
+              <div class="mini-chart">
+                <span style="--h:30%"></span><span style="--h:45%"></span><span style="--h:38%"></span>
+                <span style="--h:60%"></span><span style="--h:52%"></span><span style="--h:74%"></span>
+                <span style="--h:68%"></span><span style="--h:88%"></span>
+              </div>
+            </div>
+            <div class="dash__card">
+              <p class="dash__card-label">Page Speed</p>
+              <p class="dash__card-value">0.87<span>s</span></p>
+              <p class="dash__card-trend is-up">↑ 22% faster</p>
+              <div class="mini-chart">
+                <span style="--h:70%"></span><span style="--h:65%"></span><span style="--h:58%"></span>
+                <span style="--h:50%"></span><span style="--h:40%"></span><span style="--h:34%"></span>
+                <span style="--h:28%"></span><span style="--h:20%"></span>
+              </div>
+            </div>
+            <div class="dash__card">
+              <p class="dash__card-label">Active Users</p>
+              <p class="dash__card-value">18.2<span>k</span></p>
+              <p class="dash__card-trend is-up">↑ 4.1k this week</p>
+              <div class="mini-chart">
+                <span style="--h:40%"></span><span style="--h:48%"></span><span style="--h:55%"></span>
+                <span style="--h:62%"></span><span style="--h:70%"></span><span style="--h:78%"></span>
+                <span style="--h:84%"></span><span style="--h:92%"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="dash__progress-row">
+            <div class="dash__progress-item">
+              <div class="dash__progress-top"><span>Design System</span><span>100%</span></div>
+              <div class="progress-track"><div class="progress-fill" style="--w:100%"></div></div>
+            </div>
+            <div class="dash__progress-item">
+              <div class="dash__progress-top"><span>Frontend Build</span><span>76%</span></div>
+              <div class="progress-track"><div class="progress-fill" style="--w:76%"></div></div>
+            </div>
+            <div class="dash__progress-item">
+              <div class="dash__progress-top"><span>API Integration</span><span>52%</span></div>
+              <div class="progress-track"><div class="progress-fill" style="--w:52%"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--SERVICES-->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow"><span class="eyebrow__dot"></span>What we do</p>
+        <h2 class="section-title">Full-stack craft, from strategy to scale.</h2>
+        <p class="section-desc">Every engagement is staffed by a small senior pod — no account layers, no hand-offs.</p>
+      </div>
+
+      <div class="services__grid">
+        <article class="service-card reveal">
+          <div class="service-card__icon" aria-hidden="true">◆</div>
+          <h3>Product Design</h3>
+          <p>Interface systems and interaction design rooted in your product's actual usage data, not trends.</p>
+          <ul class="service-card__list">
+            <li>Design systems</li>
+            <li>User research</li>
+            <li>Prototyping</li>
+          </ul>
+        </article>
+
+        <article class="service-card reveal" style="--reveal-delay:0.08s">
+          <div class="service-card__icon" aria-hidden="true">▲</div>
+          <h3>Web Engineering</h3>
+          <p>Performance-obsessed front-end builds and resilient back-end architecture that scale with you.</p>
+          <ul class="service-card__list">
+            <li>Custom web apps</li>
+            <li>API architecture</li>
+            <li>Performance audits</li>
+          </ul>
+        </article>
+
+        <article class="service-card reveal" style="--reveal-delay:0.16s">
+          <div class="service-card__icon" aria-hidden="true">●</div>
+          <h3>Brand & Motion</h3>
+          <p>Visual identity and motion language that make a product feel considered before a user reads a word.</p>
+          <ul class="service-card__list">
+            <li>Identity systems</li>
+            <li>Micro-interactions</li>
+            <li>Marketing sites</li>
+          </ul>
+        </article>
+
+        <article class="service-card reveal" style="--reveal-delay:0.24s">
+          <div class="service-card__icon" aria-hidden="true">◈</div>
+          <h3>Growth & Ops</h3>
+          <p>Analytics instrumentation and conversion engineering that turn traffic into a measurable pipeline.</p>
+          <ul class="service-card__list">
+            <li>Conversion optimization</li>
+            <li>Analytics setup</li>
+            <li>A/B testing</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!--PORTFOLIO-->
+  <section class="portfolio" id="work">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow"><span class="eyebrow__dot"></span>Selected work</p>
+        <h2 class="section-title">Products we've taken from zero to production.</h2>
+        <p class="section-desc">A small sample of the systems currently running in the wild.</p>
+      </div>
+
+      <div class="portfolio__grid">
+
+        <article class="browser-card reveal">
+          <div class="browser-card__chrome">
+            <div class="browser-card__dots"><span></span><span></span><span></span></div>
+            <div class="browser-card__url">nimbus.finance</div>
+          </div>
+          <div class="browser-card__screen screen--finance">
+            <div class="fake-nav"><span></span><span></span><span></span></div>
+            <div class="fake-hero">
+              <div class="fake-line fake-line--lg"></div>
+              <div class="fake-line fake-line--md"></div>
+              <div class="fake-btn"></div>
+            </div>
+            <div class="fake-grid">
+              <div class="fake-block"></div>
+              <div class="fake-block"></div>
+              <div class="fake-block"></div>
+            </div>
+          </div>
+          <div class="browser-card__info">
+            <h3>Nimbus Finance</h3>
+            <p>Consumer investing dashboard · Fintech</p>
+          </div>
+        </article>
+
+        <article class="browser-card reveal" style="--reveal-delay:0.08s">
+          <div class="browser-card__chrome">
+            <div class="browser-card__dots"><span></span><span></span><span></span></div>
+            <div class="browser-card__url">orbitcommerce.io</div>
+          </div>
+          <div class="browser-card__screen screen--commerce">
+            <div class="fake-nav"><span></span><span></span><span></span></div>
+            <div class="fake-hero fake-hero--split">
+              <div>
+                <div class="fake-line fake-line--md"></div>
+                <div class="fake-line fake-line--sm"></div>
+                <div class="fake-btn fake-btn--sm"></div>
+              </div>
+              <div class="fake-card"></div>
+            </div>
+            <div class="fake-grid fake-grid--4">
+              <div class="fake-block"></div>
+              <div class="fake-block"></div>
+              <div class="fake-block"></div>
+              <div class="fake-block"></div>
+            </div>
+          </div>
+          <div class="browser-card__info">
+            <h3>Orbit Commerce</h3>
+            <p>Headless storefront platform · E-commerce</p>
+          </div>
+        </article>
+
+        <article class="browser-card reveal" style="--reveal-delay:0.16s">
+          <div class="browser-card__chrome">
+            <div class="browser-card__dots"><span></span><span></span><span></span></div>
+            <div class="browser-card__url">lumenhealth.app</div>
+          </div>
+          <div class="browser-card__screen screen--health">
+            <div class="fake-nav"><span></span><span></span><span></span></div>
+            <div class="fake-hero">
+              <div class="fake-line fake-line--lg"></div>
+              <div class="fake-line fake-line--md"></div>
+            </div>
+            <div class="fake-chart">
+              <span style="--h:40%"></span><span style="--h:65%"></span><span style="--h:50%"></span>
+              <span style="--h:80%"></span><span style="--h:60%"></span><span style="--h:90%"></span>
+            </div>
+          </div>
+          <div class="browser-card__info">
+            <h3>Lumen Health</h3>
+            <p>Patient monitoring portal · Healthtech</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <script src="script.js"></script>
 </body>
-
 </html>
+

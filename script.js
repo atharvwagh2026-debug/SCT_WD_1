@@ -1,176 +1,244 @@
-// ==========================
-// THEME TOGGLE
-// ==========================
+/* ============================================================
+   ATHNEX — script.js
+   Organized into small, reusable functions grouped by feature.
+   ============================================================ */
 
-const themeBtn = document.querySelector(".theme-btn");
-const body = document.body;
+document.addEventListener('DOMContentLoaded', () => {
+  initThemeToggle();
+  initNavbarScroll();
+  initMobileMenu();
+  initSmoothAnchorClose();
+  initScrollReveal();
+  initCounters();
+  initFAQ();
+  initBackToTop();
+  initActiveNavLink();
+  initContactForm();
+});
 
-if (localStorage.getItem("theme") === "light") {
-    body.classList.add("light-theme");
-    themeBtn.innerHTML = '<i class="ri-sun-line"></i>';
+/* ------------------------------------------------------------
+   Theme Toggle (dark / light, persisted in memory for session)
+   ------------------------------------------------------------ */
+function initThemeToggle() {
+  const toggle = document.getElementById('themeToggle');
+  const body = document.body;
+
+  if (!toggle) return;
+
+  toggle.addEventListener('click', () => {
+    const isLight = body.getAttribute('data-theme') === 'light';
+    body.setAttribute('data-theme', isLight ? 'dark' : 'light');
+    toggle.setAttribute('aria-pressed', String(!isLight));
+  });
 }
 
-themeBtn.addEventListener("click", () => {
+/* ------------------------------------------------------------
+   Navbar background on scroll
+   ------------------------------------------------------------ */
+function initNavbarScroll() {
+  const navbar = document.getElementById('navbar');
+  if (!navbar) return;
 
-    body.classList.toggle("light-theme");
-
-    if (body.classList.contains("light-theme")) {
-        localStorage.setItem("theme", "light");
-        themeBtn.innerHTML = '<i class="ri-sun-line"></i>';
+  const updateNavbar = () => {
+    if (window.scrollY > 12) {
+      navbar.classList.add('is-scrolled');
     } else {
-        localStorage.setItem("theme", "dark");
-        themeBtn.innerHTML = '<i class="ri-moon-line"></i>';
+      navbar.classList.remove('is-scrolled');
     }
+  };
 
-});
+  updateNavbar();
+  window.addEventListener('scroll', updateNavbar, { passive: true });
+}
 
+/* ------------------------------------------------------------
+   Mobile hamburger menu
+   ------------------------------------------------------------ */
+function initMobileMenu() {
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  if (!hamburger || !navLinks) return;
 
-// ==========================
-// STICKY NAVBAR
-// ==========================
+  hamburger.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('is-open');
+    hamburger.classList.toggle('is-active', isOpen);
+    hamburger.setAttribute('aria-expanded', String(isOpen));
+  });
+}
 
-const header = document.querySelector("header");
+/* ------------------------------------------------------------
+   Close mobile menu automatically when a nav link is clicked
+   ------------------------------------------------------------ */
+function initSmoothAnchorClose() {
+  const navLinks = document.getElementById('navLinks');
+  const hamburger = document.getElementById('hamburger');
+  if (!navLinks) return;
 
-window.addEventListener("scroll", () => {
-
-    if (window.scrollY > 50) {
-
-        header.style.background = "rgba(9,9,11,.8)";
-        header.style.backdropFilter = "blur(20px)";
-        header.style.boxShadow = "0 10px 30px rgba(0,0,0,.3)";
-
-    } else {
-
-        header.style.background = "rgba(255,255,255,.05)";
-        header.style.boxShadow = "none";
-
-    }
-
-});
-
-
-// ==========================
-// HERO CARD FLOATING
-// ==========================
-
-const dashboard = document.querySelector(".dashboard");
-
-window.addEventListener("mousemove", (e) => {
-
-    const x = (window.innerWidth / 2 - e.clientX) / 40;
-    const y = (window.innerHeight / 2 - e.clientY) / 40;
-
-    dashboard.style.transform =
-        `rotateY(${x}deg) rotateX(${-y}deg)`;
-
-});
-
-
-// ==========================
-// BUTTON RIPPLE EFFECT
-// ==========================
-
-const buttons = document.querySelectorAll(".btn");
-
-buttons.forEach(button => {
-
-    button.addEventListener("click", function (e) {
-
-        const ripple = document.createElement("span");
-
-        ripple.classList.add("ripple");
-
-        const x = e.clientX - this.offsetLeft;
-        const y = e.clientY - this.offsetTop;
-
-        ripple.style.left = x + "px";
-        ripple.style.top = y + "px";
-
-        this.appendChild(ripple);
-
-        setTimeout(() => {
-
-            ripple.remove();
-
-        }, 600);
-
+  navLinks.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('is-open');
+      if (hamburger) {
+        hamburger.classList.remove('is-active');
+        hamburger.setAttribute('aria-expanded', 'false');
+      }
     });
+  });
+}
 
-});
+/* ------------------------------------------------------------
+   Scroll Reveal — IntersectionObserver based fade/slide-in
+   ------------------------------------------------------------ */
+function initScrollReveal() {
+  const revealEls = document.querySelectorAll('.reveal');
+  if (!revealEls.length) return;
 
+  if (!('IntersectionObserver' in window)) {
+    revealEls.forEach((el) => el.classList.add('is-visible'));
+    return;
+  }
 
-// ==========================
-// SMOOTH SCROLL
-// ==========================
-
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-
-    anchor.addEventListener("click", function (e) {
-
-        e.preventDefault();
-
-        const target = document.querySelector(this.getAttribute("href"));
-
-        if (target) {
-
-            target.scrollIntoView({
-
-                behavior: "smooth"
-
-            });
-
-        }
-
-    });
-
-});
-
-
-// ==========================
-// SCROLL REVEAL
-// ==========================
-
-const observer = new IntersectionObserver((entries) => {
-
-    entries.forEach(entry => {
-
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-
-            entry.target.classList.add("show");
-
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
         }
+      });
+    },
+    { threshold: 0.15, rootMargin: '0px 0px -60px 0px' }
+  );
 
+  revealEls.forEach((el) => observer.observe(el));
+}
+
+/* ------------------------------------------------------------
+   Animated stat counters (hero section)
+   ------------------------------------------------------------ */
+function initCounters() {
+  const counters = document.querySelectorAll('[data-count]');
+  if (!counters.length) return;
+
+  const animateCounter = (el) => {
+    const target = parseFloat(el.getAttribute('data-count'));
+    const suffix = el.getAttribute('data-suffix') || '';
+    const duration = 1600;
+    const start = performance.now();
+
+    const step = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+      const value = Math.floor(eased * target);
+      el.textContent = value + suffix;
+
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        el.textContent = target + suffix;
+      }
+    };
+
+    requestAnimationFrame(step);
+  };
+
+  if (!('IntersectionObserver' in window)) {
+    counters.forEach(animateCounter);
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.5 }
+  );
+
+  counters.forEach((el) => observer.observe(el));
+}
+
+/* ------------------------------------------------------------
+   FAQ accordion
+   ------------------------------------------------------------ */
+function initFAQ() {
+  const items = document.querySelectorAll('.faq-item');
+  if (!items.length) return;
+
+  items.forEach((item) => {
+    const question = item.querySelector('.faq-item__question');
+    if (!question) return;
+
+    question.addEventListener('click', () => {
+      const isOpen = item.classList.contains('is-open');
+
+      // Close all other items for a clean accordion behavior
+      items.forEach((other) => {
+        other.classList.remove('is-open');
+        const otherQuestion = other.querySelector('.faq-item__question');
+        if (otherQuestion) otherQuestion.setAttribute('aria-expanded', 'false');
+      });
+
+      if (!isOpen) {
+        item.classList.add('is-open');
+        question.setAttribute('aria-expanded', 'true');
+      }
     });
+  });
+}
 
-}, {
+/* ------------------------------------------------------------
+   Back to top button
+   ------------------------------------------------------------ */
+function initBackToTop() {
+  const btn = document.getElementById('backToTop');
+  if (!btn) return;
 
-    threshold: .2
+  const toggleVisibility = () => {
+    btn.classList.toggle('is-visible', window.scrollY > 480);
+  };
 
-});
+  toggleVisibility();
+  window.addEventListener('scroll', toggleVisibility, { passive: true });
 
-document.querySelectorAll(".hero-content,.dashboard").forEach((el) => {
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
 
-    observer.observe(el);
+/* ------------------------------------------------------------
+   Contact form — client-side validation + fake submit feedback
+   ------------------------------------------------------------ */
+function initContactForm() {
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('formStatus');
+  if (!form || !status) return;
 
-});
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
 
+    if (!form.checkValidity()) {
+      status.textContent = 'Please fill in all required fields correctly.';
+      status.style.color = '#ff6f6f';
+      return;
+    }
 
-// ==========================
-// PRELOADER (Future Ready)
-// ==========================
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalContent = submitBtn.innerHTML;
 
-window.addEventListener("load", () => {
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span>Sending…</span>';
 
-    document.body.classList.add("loaded");
-
-});
-
-
-// ==========================
-// CONSOLE MESSAGE 
-// ==========================
-
-console.log("%cATHNEX",
-"font-size:32px;font-weight:bold;color:#a855f7;");
-
-console.log("Designed & Developed by Atharv 🚀");
+    // Simulate a network request since this is a static front-end demo
+    setTimeout(() => {
+      status.style.color = '';
+      status.textContent = "Thanks — your message is in. We'll reply within one business day.";
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalContent;
+      form.reset();
+    }, 1100);
+  });
+}
