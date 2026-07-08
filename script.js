@@ -1,5 +1,5 @@
 /* ============================================================
-   ATHNEX — script.js
+   MEXTRAZON — script.js
    Organized into small, reusable functions grouped by feature.
    ============================================================ */
 

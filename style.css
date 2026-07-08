@@ -284,14 +284,29 @@ section{ position: relative; padding: 120px 0; }
 .navbar__actions{ display: flex; align-items: center; gap: 18px; }
 
 .theme-toggle{ display: flex; align-items: center; }
+.theme-toggle-group{ display: flex; align-items: center; gap: 8px; }
+.theme-toggle-label{
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
 .theme-toggle__track{
   width: 46px; height: 24px;
   border-radius: 20px;
   background: var(--glass-bg-strong);
-  border: 1px solid var(--glass-border);
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
   position: relative;
   display: block;
-  transition: background var(--dur-fast) ease;
+  transition: background var(--dur-fast) ease, border-color var(--dur-fast) ease;
+}
+[data-theme="light"] .theme-toggle__track{
+  border-color: rgba(18, 19, 28, 0.35);
+}
+[data-theme="light"] .theme-toggle__track{
+  border-color: rgba(18, 19, 28, 0.35);
 }
 .theme-toggle__thumb{
   position: absolute;
@@ -301,8 +316,29 @@ section{ position: relative; padding: 120px 0; }
   background: linear-gradient(135deg, var(--violet), var(--cyan));
   transition: transform var(--dur-med) var(--ease-out);
 }
+
+.theme-toggle__icon{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 10px;
+  line-height: 1;
+  pointer-events: none;
+}
+.theme-toggle__icon--moon{ left: 5px; }
+.theme-toggle__icon--sun{ right: 5px; }
 [data-theme="light"] .theme-toggle__thumb{ transform: translateX(22px); }
 
+.theme-toggle__icon{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 10px;
+  line-height: 1;
+  pointer-events: none;
+}
+.theme-toggle__icon--moon{ left: 5px; }
+.theme-toggle__icon--sun{ right: 5px; }
 .hamburger{
   display: none;
   flex-direction: column;
@@ -354,7 +390,7 @@ section{ position: relative; padding: 120px 0; }
 /* ============================================================
    7. HERO
    ============================================================ */
-.hero{ padding-top: 150px; padding-bottom: 90px; }
+.hero{ padding-top: 80px; padding-bottom: 90px; }
 .hero__inner{
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
@@ -413,8 +449,9 @@ section{ position: relative; padding: 120px 0; }
   background: linear-gradient(120deg, var(--violet), var(--cyan), var(--pink), var(--violet));
   background-size: 300% 300%;
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
+mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+-webkit-mask-composite: xor;
+mask-composite: exclude;
   opacity: 0.7;
   animation: border-flow 6s linear infinite;
   pointer-events: none;
@@ -643,8 +680,9 @@ section{ position: relative; padding: 120px 0; }
   background: linear-gradient(140deg, var(--violet), transparent 40%, var(--cyan) 100%);
   opacity: 0;
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+   mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
-  mask-composite: exclude;
+mask-composite: exclude;
   transition: opacity var(--dur-med) ease;
   pointer-events: none;
 }
@@ -852,7 +890,20 @@ section{ position: relative; padding: 120px 0; }
   background: rgba(255,255,255,0.06);
   outline: none;
 }
-.form-field select{ appearance: none; cursor: pointer; }
+.form-field select{
+  appearance: none;
+  cursor: pointer;
+  background-image: linear-gradient(45deg, transparent 50%, var(--cyan) 50%),
+                     linear-gradient(135deg, var(--cyan) 50%, transparent 50%);
+  background-position: calc(100% - 22px) calc(1.3em + 2px), calc(100% - 17px) calc(1.3em + 2px);
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  color-scheme: dark;
+}
+.form-field select option{
+  background: var(--surface);
+  color: var(--text-primary);
+}
 .form-field textarea{ resize: vertical; min-height: 100px; }
 
 .contact__status{ font-size: 0.86rem; color: var(--cyan); min-height: 20px; }
