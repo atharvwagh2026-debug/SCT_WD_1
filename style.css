@@ -1,5 +1,5 @@
 /* ============================================================
-   ATHNEX — Studio Landing Page
+   MEXTRAZON — Studio Landing Page
    Table of Contents:
    1.  Reset & Root Variables
    2.  Base / Typography
@@ -157,7 +157,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 .section-desc{ color: var(--text-secondary); font-size: 1.05rem; }
 
-section{ position: relative; padding: 120px 0; }
+section{ position: relative; padding: 80px 0; }
 
 /* Glass panel base */
 .glass{
@@ -278,12 +278,9 @@ section{ position: relative; padding: 120px 0; }
 }
 .nav-link:hover{ color: var(--text-primary); }
 .nav-link:hover::after{ width: 100%; }
-.nav-link.is-active{ color: var(--text-primary); }
-.nav-link.is-active::after{ width: 100%; }
 
 .navbar__actions{ display: flex; align-items: center; gap: 18px; }
 
-.theme-toggle{ display: flex; align-items: center; }
 .theme-toggle-group{ display: flex; align-items: center; gap: 8px; }
 .theme-toggle-label{
   font-size: 0.85rem;
@@ -293,6 +290,7 @@ section{ position: relative; padding: 120px 0; }
   text-transform: uppercase;
   letter-spacing: 0.12em;
 }
+.theme-toggle{ display: flex; align-items: center; }
 .theme-toggle__track{
   width: 46px; height: 24px;
   border-radius: 20px;
@@ -305,7 +303,6 @@ section{ position: relative; padding: 120px 0; }
 [data-theme="light"] .theme-toggle__track{
   border-color: rgba(18, 19, 28, 0.35);
 }
-
 .theme-toggle__thumb{
   position: absolute;
   top: 2px; left: 2px;
@@ -314,7 +311,7 @@ section{ position: relative; padding: 120px 0; }
   background: linear-gradient(135deg, var(--violet), var(--cyan));
   transition: transform var(--dur-med) var(--ease-out);
 }
-
+[data-theme="light"] .theme-toggle__thumb{ transform: translateX(22px); }
 .theme-toggle__icon{
   position: absolute;
   top: 50%;
@@ -325,7 +322,6 @@ section{ position: relative; padding: 120px 0; }
 }
 .theme-toggle__icon--moon{ left: 5px; }
 .theme-toggle__icon--sun{ right: 5px; }
-[data-theme="light"] .theme-toggle__thumb{ transform: translateX(22px); }
 
 .hamburger{
   display: none;
@@ -378,7 +374,7 @@ section{ position: relative; padding: 120px 0; }
 /* ============================================================
    7. HERO
    ============================================================ */
-.hero{ padding-top: 80px; padding-bottom: 90px; }
+.hero{ padding-top: 100px; padding-bottom: 90px; }
 .hero__inner{
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
@@ -424,10 +420,12 @@ section{ position: relative; padding: 120px 0; }
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   box-shadow: var(--shadow-soft);
-  transform: perspective(1200px) rotateY(-6deg) rotateX(3deg);
-  transition: transform var(--dur-slow) var(--ease-out);
 }
-.console:hover{ transform: perspective(1200px) rotateY(-2deg) rotateX(1deg); }
+
+.console:hover{ 
+  transform: scale(1.1);
+  transition: transform 0.5s;
+}
 
 .console__glow{
   position: absolute;
@@ -437,9 +435,9 @@ section{ position: relative; padding: 120px 0; }
   background: linear-gradient(120deg, var(--violet), var(--cyan), var(--pink), var(--violet));
   background-size: 300% 300%;
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
--webkit-mask-composite: xor;
-mask-composite: exclude;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
   opacity: 0.7;
   animation: border-flow 6s linear infinite;
   pointer-events: none;
@@ -522,18 +520,18 @@ mask-composite: exclude;
 
 .floating-chip{
   position: absolute;
-  padding: 10px 16px;
+  padding: 5px 11px;
   border-radius: 999px;
   font-size: 0.8rem;
   font-weight: 500;
   background: var(--glass-bg-strong);
-  border: 1px solid var(--glass-border-strong);
+  border: 3px solid var(--glass-border-strong);
   backdrop-filter: blur(14px);
   box-shadow: var(--shadow-soft);
   animation: float 6s ease-in-out infinite;
 }
-.chip-1{ top: -22px; right: 30px; animation-delay: 0s; }
-.chip-2{ bottom: -18px; left: -10px; animation-delay: 1.5s; }
+.chip-1{ top: -22px; right: 30px; animation-delay: 0s;}
+.chip-2{ bottom: -36px; left: -10px; animation-delay: 0s; }
 @keyframes float{
   0%,100%{ transform: translateY(0); }
   50%{ transform: translateY(-14px); }
@@ -649,6 +647,7 @@ mask-composite: exclude;
   grid-template-columns: repeat(4, 1fr);
   gap: 22px;
 }
+
 .service-card{
   position: relative;
   padding: 32px 26px;
@@ -659,6 +658,7 @@ mask-composite: exclude;
   transition: transform var(--dur-med) var(--ease-out), border-color var(--dur-med) ease, box-shadow var(--dur-med) ease;
   overflow: hidden;
 }
+
 .service-card::before{
   content: '';
   position: absolute;
@@ -668,12 +668,13 @@ mask-composite: exclude;
   background: linear-gradient(140deg, var(--violet), transparent 40%, var(--cyan) 100%);
   opacity: 0;
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-   mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
-mask-composite: exclude;
+  mask-composite: exclude;
   transition: opacity var(--dur-med) ease;
   pointer-events: none;
 }
+
 .service-card:hover{ transform: translateY(-8px); box-shadow: var(--shadow-lift); }
 .service-card:hover::before{ opacity: 1; }
 .service-card__icon{
@@ -1041,7 +1042,7 @@ mask-composite: exclude;
 
 @media (max-width: 480px){
   .container{ padding-inline: 20px; }
-  .hero{ padding-top: 130px; }
+  .hero{ padding-top: 90px; }
   .hero__stats{ gap: 26px; }
   .contact__panel{ padding: 26px; }
 }
