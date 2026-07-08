@@ -374,7 +374,7 @@ section{ position: relative; padding: 80px 0; }
 /* ============================================================
    7. HERO
    ============================================================ */
-.hero{ padding-top: 100px; padding-bottom: 90px; }
+.hero{ padding-top: 95px; padding-bottom: 65px; }
 .hero__inner{
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
